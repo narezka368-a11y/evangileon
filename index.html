@@ -179,139 +179,86 @@
   .card-stat strong { display: block; color: var(--accent2); font-size: 1rem; }
   .card-stat span { opacity: 0.7; }
 
-  /* ===== PILOT CARDS WITH IMAGES ===== */
+  /* ===== PILOT CARDS ===== */
   .pilot-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 25px;
   }
-
   .pilot-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
     transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
-    position: relative;
-    cursor: pointer;
+    position: relative; cursor: pointer;
   }
-
   .pilot-card:hover {
     transform: translateY(-12px);
     box-shadow: 0 25px 50px var(--shadow);
     border-color: var(--accent);
   }
-
   .pilot-image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
+    position: relative; width: 100%;
+    aspect-ratio: 1 / 1; overflow: hidden;
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
   }
-
   .pilot-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
     transition: transform 0.6s ease, filter 0.6s ease;
     filter: contrast(1.05);
   }
-
   .pilot-card:hover .pilot-image img {
     transform: scale(1.08);
     filter: contrast(1.15) brightness(1.05);
   }
-
   .pilot-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, transparent 40%, var(--card) 100%);
     pointer-events: none;
   }
-
   .pilot-badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
+    position: absolute; top: 15px; left: 15px;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    z-index: 2;
+    color: white; padding: 6px 14px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase; z-index: 2;
     box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   }
-
   .pilot-eva-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(0,0,0,0.75);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    z-index: 2;
+    position: absolute; top: 15px; right: 15px;
+    background: rgba(0,0,0,0.75); color: white;
+    padding: 6px 12px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 700; z-index: 2;
     backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,0.2);
   }
-
   .pilot-info {
-    padding: 0 22px 25px;
-    margin-top: -30px;
-    position: relative;
-    z-index: 1;
+    padding: 0 22px 25px; margin-top: -30px;
+    position: relative; z-index: 1;
   }
-
   .pilot-info h3 {
-    font-size: 1.45rem;
-    color: var(--accent2);
-    margin-bottom: 4px;
+    font-size: 1.45rem; color: var(--accent2); margin-bottom: 4px;
   }
-
   .pilot-name-jp {
-    font-size: 0.8rem;
-    opacity: 0.55;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+    font-size: 0.8rem; opacity: 0.55;
+    letter-spacing: 2px; margin-bottom: 12px;
     text-transform: uppercase;
   }
-
   .pilot-info p {
-    font-size: 0.92rem;
-    opacity: 0.85;
-    margin-bottom: 12px;
-    line-height: 1.55;
+    font-size: 0.92rem; opacity: 0.85;
+    margin-bottom: 12px; line-height: 1.55;
   }
-
   .pilot-traits {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;
   }
-
   .trait {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 4px 11px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: all 0.3s;
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 4px 11px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.5px; transition: all 0.3s;
   }
-
   .pilot-card:hover .trait {
-    border-color: var(--accent2);
-    color: var(--accent2);
+    border-color: var(--accent2); color: var(--accent2);
   }
 
   /* ===== TIMELINE ===== */
@@ -399,33 +346,80 @@
   }
   .char-card p { font-size: 0.92rem; opacity: 0.85; }
 
-  /* ===== GALLERY ===== */
+  /* ===== GALLERY WITH PHOTOS ===== */
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
   }
-  .gallery-item {
-    aspect-ratio: 1;
-    border-radius: 16px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    cursor: pointer; position: relative;
+
+  .gallery-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 18px;
     overflow: hidden;
+    cursor: pointer;
     transition: transform 0.4s, box-shadow 0.4s;
-    color: white; text-align: center; padding: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
   }
-  .gallery-item::before {
+
+  .gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px var(--shadow);
+  }
+
+  .gallery-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: contrast(1.05);
+  }
+
+  .gallery-card:hover img {
+    transform: scale(1.1);
+    filter: contrast(1.2) brightness(1.05);
+  }
+
+  .gallery-card::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.1));
-    opacity: 0; transition: opacity 0.4s;
+    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.9) 100%);
+    pointer-events: none;
   }
-  .gallery-item:hover::before { opacity: 1; }
-  .gallery-item:hover { transform: scale(1.05) rotate(-1deg); box-shadow: 0 20px 40px var(--shadow); }
-  .gallery-emoji { font-size: 4rem; margin-bottom: 12px; z-index: 1; transition: transform 0.4s; }
-  .gallery-item:hover .gallery-emoji { transform: scale(1.2) rotate(8deg); }
-  .gallery-title { font-size: 1.05rem; font-weight: 700; z-index: 1; }
-  .gallery-sub { font-size: 0.8rem; opacity: 0.9; z-index: 1; }
+
+  .gallery-card-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 22px 20px; z-index: 2; color: white;
+  }
+
+  .gallery-card-info h3 {
+    font-size: 1.3rem; margin-bottom: 4px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  }
+
+  .gallery-card-info .gallery-jp {
+    font-size: 0.78rem; opacity: 0.85;
+    letter-spacing: 2px; margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .gallery-card-info .gallery-eva {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    padding: 5px 14px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+
+  .gallery-card-badge {
+    position: absolute; top: 15px; right: 15px;
+    background: rgba(0,0,0,0.75);
+    color: white; padding: 6px 12px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 700;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 2;
+  }
 
   /* ===== COMPARISON ===== */
   .compare-table {
@@ -470,47 +464,6 @@
     font-size: 1.1rem; margin-bottom: 6px; letter-spacing: 0.5px;
   }
   .gloss-def { font-size: 0.9rem; opacity: 0.85; }
-
-  /* ===== MUSIC PLAYER ===== */
-  .music-player {
-    background: var(--card); border: 2px solid var(--border);
-    border-radius: 20px; padding: 25px;
-    display: flex; align-items: center; gap: 20px;
-    box-shadow: 0 10px 30px var(--shadow); flex-wrap: wrap;
-  }
-  .player-art {
-    width: 90px; height: 90px; border-radius: 14px;
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.5rem; animation: spinSlow 8s linear infinite;
-    flex-shrink: 0;
-  }
-  @keyframes spinSlow {
-    from { transform: rotate(0); }
-    to   { transform: rotate(360deg); }
-  }
-  .player-info { flex: 1; min-width: 200px; }
-  .player-title { font-weight: 800; font-size: 1.1rem; color: var(--accent2); }
-  .player-artist { font-size: 0.85rem; opacity: 0.7; margin-bottom: 12px; }
-  .player-bar {
-    height: 6px; background: var(--border); border-radius: 10px;
-    overflow: hidden; margin-bottom: 12px;
-  }
-  .player-fill {
-    height: 100%; width: 0%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transition: width 0.3s;
-  }
-  .player-controls { display: flex; gap: 12px; align-items: center; }
-  .player-btn {
-    background: var(--accent); color: white; border: none;
-    width: 45px; height: 45px; border-radius: 50%;
-    cursor: pointer; font-size: 1.2rem;
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .player-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--accent); }
-  .player-time { font-size: 0.8rem; opacity: 0.7; margin-left: auto; }
 
   /* ===== GAME COMMON ===== */
   .game-wrap {
@@ -713,7 +666,6 @@
     <a href="#compare">Rebuild</a>
     <a href="#game">Пилот</a>
     <a href="#game2">Ангелы</a>
-    <a href="#music">Музыка</a>
     <a href="#glossary">Словарь</a>
     <a href="#article">Статья</a>
   </nav>
@@ -795,12 +747,11 @@
   </div>
 </section>
 
-<!-- ПИЛОТЫ С КАРТИНКАМИ -->
+<!-- ПИЛОТЫ -->
 <section id="pilots">
   <h2>Пилоты Ев</h2>
   <div class="pilot-grid">
 
-    <!-- СИНДЗИ -->
     <div class="pilot-card reveal">
       <div class="pilot-image">
         <span class="pilot-badge">Третье Дитя</span>
@@ -810,7 +761,7 @@
       <div class="pilot-info">
         <h3>Синдзи Икари</h3>
         <div class="pilot-name-jp">Ikari Shinji · 碇 シンジ</div>
-        <p>Замкнутый подросток, страдающий от нехватки любви отца. Его внутренняя борьба — центральная тема сериала. Сложно доверяет, но глубоко чувствует.</p>
+        <p>Замкнутый подросток, страдающий от нехватки любви отца. Его внутренняя борьба — центральная тема сериала.</p>
         <div class="pilot-traits">
           <span class="trait">14 лет</span>
           <span class="trait">Интроверт</span>
@@ -819,7 +770,6 @@
       </div>
     </div>
 
-    <!-- РЕЙ -->
     <div class="pilot-card reveal">
       <div class="pilot-image">
         <span class="pilot-badge">Первое Дитя</span>
@@ -829,7 +779,7 @@
       <div class="pilot-info">
         <h3>Рей Аянами</h3>
         <div class="pilot-name-jp">Ayanami Rei · 綾波レイ</div>
-        <p>Загадочная, молчаливая, преданная Гэндо. Клон Юи Икари, вместилище души Лилит. Её существование — одна из главных загадок NERV.</p>
+        <p>Загадочная, молчаливая, преданная Гэндо. Клон Юи Икари, вместилище души Лилит.</p>
         <div class="pilot-traits">
           <span class="trait">14 лет</span>
           <span class="trait">Клон</span>
@@ -838,7 +788,6 @@
       </div>
     </div>
 
-    <!-- АСКА -->
     <div class="pilot-card reveal">
       <div class="pilot-image">
         <span class="pilot-badge">Второе Дитя</span>
@@ -848,30 +797,11 @@
       <div class="pilot-info">
         <h3>Аска Лэнгли Сорью</h3>
         <div class="pilot-name-jp">Asuka Langley · 惣流・アスカ</div>
-        <p>Гордая, вспыльчивая, скрывающая глубокую травму детства. Одна из самых трагичных героинь аниме. Лучший пилот по синхронизации.</p>
+        <p>Гордая, вспыльчивая, скрывающая глубокую травму детства. Лучший пилот по синхронизации.</p>
         <div class="pilot-traits">
           <span class="trait">14 лет</span>
           <span class="trait">Гений</span>
           <span class="trait">Синхро: 50–80%</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- КАОРУ -->
-    <div class="pilot-card reveal">
-      <div class="pilot-image">
-        <span class="pilot-badge">Пятое Дитя</span>
-        <span class="pilot-eva-badge">🧑 Ангел</span>
-        <img src="images/kaworu.png" alt="Каору Нагиса">
-      </div>
-      <div class="pilot-info">
-        <h3>Каору Нагиса</h3>
-        <div class="pilot-name-jp">Nagisa Kaworu · 渚カヲル</div>
-        <p>Ангел в человеческом обличье. Символ любви и жертвы. Его судьба — один из самых сильных моментов сериала. Управлял Евой-02 после Аски.</p>
-        <div class="pilot-traits">
-          <span class="trait">Ангел</span>
-          <span class="trait">Семнадцатый</span>
-          <span class="trait">Синхро: 100%</span>
         </div>
       </div>
     </div>
@@ -887,7 +817,7 @@
       <div class="char-avatar">👨‍💼</div>
       <h3>Гэндо Икари</h3>
       <div class="char-role">Командующий NERV</div>
-      <p>Отец Синдзи. Холодный, расчётливый, одержимый идеей воссоединения с Юи. Автор Проекта совершенствования человечества.</p>
+      <p>Отец Синдзи. Холодный, расчётливый, одержимый идеей воссоединения с Юи. Автор Проекта совершенствования.</p>
     </div>
     <div class="char-card reveal">
       <div class="char-avatar">👩‍✈️</div>
@@ -993,50 +923,41 @@
   </div>
 </section>
 
-<!-- ГАЛЕРЕЯ -->
+<!-- ГАЛЕРЕЯ С ФОТО -->
 <section id="gallery">
-  <h2>🖼️ Галерея символов</h2>
+  <h2>🖼️ Галерея пилотов</h2>
   <div class="gallery">
-    <div class="gallery-item" style="background: linear-gradient(135deg, #7b00ff, #b3001b);">
-      <div class="gallery-emoji">🟣</div>
-      <div class="gallery-title">Ева-01</div>
-      <div class="gallery-sub">Синдзи Икари</div>
+
+    <div class="gallery-card reveal">
+      <span class="gallery-card-badge">🟣 Ева-01</span>
+      <img src="images/shinji.png" alt="Синдзи Икари">
+      <div class="gallery-card-info">
+        <h3>Синдзи Икари</h3>
+        <div class="gallery-jp">Ikari Shinji · 碇 シンジ</div>
+        <span class="gallery-eva">Третье Дитя</span>
+      </div>
     </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #b3001b, #ff8c00);">
-      <div class="gallery-emoji">🔴</div>
-      <div class="gallery-title">Ева-02</div>
-      <div class="gallery-sub">Аска Лэнгли</div>
+
+    <div class="gallery-card reveal">
+      <span class="gallery-card-badge">🔵 Ева-00</span>
+      <img src="images/rei.png" alt="Рей Аянами">
+      <div class="gallery-card-info">
+        <h3>Рей Аянами</h3>
+        <div class="gallery-jp">Ayanami Rei · 綾波レイ</div>
+        <span class="gallery-eva">Первое Дитя</span>
+      </div>
     </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #0066cc, #7b00ff);">
-      <div class="gallery-emoji">🔵</div>
-      <div class="gallery-title">Ева-00</div>
-      <div class="gallery-sub">Рей Аянами</div>
+
+    <div class="gallery-card reveal">
+      <span class="gallery-card-badge">🔴 Ева-02</span>
+      <img src="images/asuka.png" alt="Аска Лэнгли Сорью">
+      <div class="gallery-card-info">
+        <h3>Аска Лэнгли</h3>
+        <div class="gallery-jp">Asuka Langley · 惣流・アスカ</div>
+        <span class="gallery-eva">Второе Дитя</span>
+      </div>
     </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #1a1a1a, #7b00ff);">
-      <div class="gallery-emoji">⚫</div>
-      <div class="gallery-title">Ева-03</div>
-      <div class="gallery-sub">Тодзи Судзухара</div>
-    </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #ff8c00, #b3001b);">
-      <div class="gallery-emoji">👼</div>
-      <div class="gallery-title">Ангелы</div>
-      <div class="gallery-sub">17 существ</div>
-    </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #7b00ff, #00d4ff);">
-      <div class="gallery-emoji">🌊</div>
-      <div class="gallery-title">LCL</div>
-      <div class="gallery-sub">Жидкость жизни</div>
-    </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #b3001b, #7b00ff);">
-      <div class="gallery-emoji">✝️</div>
-      <div class="gallery-title">Копьё Лонгина</div>
-      <div class="gallery-sub">Оружие богов</div>
-    </div>
-    <div class="gallery-item" style="background: linear-gradient(135deg, #ff8c00, #7b00ff);">
-      <div class="gallery-emoji">🌑</div>
-      <div class="gallery-title">SEELE</div>
-      <div class="gallery-sub">Тайная организация</div>
-    </div>
+
   </div>
 </section>
 
@@ -1046,9 +967,7 @@
   <div class="reveal">
     <table class="compare-table">
       <thead>
-        <tr>
-          <th>Аспект</th><th>Сериал (1995)</th><th>Rebuild (2007–2021)</th>
-        </tr>
+        <tr><th>Аспект</th><th>Сериал (1995)</th><th>Rebuild (2007–2021)</th></tr>
       </thead>
       <tbody>
         <tr><td>Количество</td><td>26 эпизодов</td><td>4 фильма</td></tr>
@@ -1099,35 +1018,17 @@
   </div>
 </section>
 
-<!-- МУЗЫКА -->
-<section id="music">
-  <h2>🎵 Музыка Евангелиона</h2>
-  <div class="music-player reveal">
-    <div class="player-art">💿</div>
-    <div class="player-info">
-      <div class="player-title" id="playerTitle">A Cruel Angel's Thesis</div>
-      <div class="player-artist">Yoko Takahashi · OP 1995</div>
-      <div class="player-bar"><div class="player-fill" id="playerFill"></div></div>
-      <div class="player-controls">
-        <button class="player-btn" id="playBtn">▶</button>
-        <button class="player-btn" id="nextBtn">⏭</button>
-        <div class="player-time" id="playerTime">0:00 / 4:05</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ГЛОССАРИЙ -->
 <section id="glossary">
   <h2>📚 Глоссарий терминов</h2>
   <div class="glossary">
     <div class="gloss-item reveal">
       <div class="gloss-term">AT-поле</div>
-      <div class="gloss-def">«Поле абсолютного террора» — барьер души, который отделяет одного человека от другого. Ангелы используют его как защиту.</div>
+      <div class="gloss-def">«Поле абсолютного террора» — барьер души, который отделяет одного человека от другого.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">LCL</div>
-      <div class="gloss-def">Жидкость жизни, заполняющая энтри-плаг. Позволяет пилоту дышать и синхронизироваться с Евой. Пахнет кровью.</div>
+      <div class="gloss-def">Жидкость жизни, заполняющая энтри-плаг. Позволяет пилоту дышать и синхронизироваться с Евой.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">SEELE</div>
@@ -1135,7 +1036,7 @@
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Ангелы</div>
-      <div class="gloss-def">Существа, пытающиеся добраться до Адама в Терминальной Догме. Их 17, каждый символизирует аспект человеческой природы.</div>
+      <div class="gloss-def">Существа, пытающиеся добраться до Адама в Терминальной Догме. Их 17.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Копьё Лонгина</div>
@@ -1151,15 +1052,15 @@
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Третий удар</div>
-      <div class="gloss-def">Событие, которое уничтожит человечество и создаст нового Адама. Главная угроза и цель SEELE.</div>
+      <div class="gloss-def">Событие, которое уничтожит человечество и создаст нового Адама.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Проект совершенствования</div>
-      <div class="gloss-def">План Гэндо и SEELE по объединению всех душ в единое целое — устранение AT-полей и индивидуальности.</div>
+      <div class="gloss-def">План Гэндо и SEELE по объединению всех душ в единое целое.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Пилоты (Дитя)</div>
-      <div class="gloss-def">Подростки 14 лет, выбранные для управления Евами. Все они — дети, рождённые после Второго удара.</div>
+      <div class="gloss-def">Подростки 14 лет, выбранные для управления Евами.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Токио-3</div>
@@ -1167,7 +1068,7 @@
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Берсерк</div>
-      <div class="gloss-def">Состояние Евы, когда она действует автономно, без контроля пилота. Чаще всего — Ева-01 под управлением души Юи.</div>
+      <div class="gloss-def">Состояние Евы, когда она действует автономно, без контроля пилота.</div>
     </div>
   </div>
 </section>
@@ -1188,7 +1089,7 @@
       <li><strong>Синдзи Икари</strong> — пилот Евы-01. Сын Гэндо. Высокая синхронизация за счёт души Юи Икари.</li>
       <li><strong>Рей Аянами</strong> — пилот Евы-00. Клон, созданный из ДНК Юи и Лилит.</li>
       <li><strong>Аска Лэнгли Сорью</strong> — пилот Евы-02. Немка, выбранная за агрессивный стиль боя.</li>
-      <li><strong>Тодзи Судзухара</strong> — четвёртое Дитя, пилот Евы-03 (погиб при уничтожении Евы-03).</li>
+      <li><strong>Тодзи Судзухара</strong> — четвёртое Дитя, пилот Евы-03.</li>
       <li><strong>Каору Нагиса</strong> — пятое Дитя, Ангел. Управлял Евой-02 после Аски.</li>
       <li><strong>Мари Макинами</strong> — пилот Евы-08 (в Rebuild).</li>
       <li><strong>Дамми-плаг</strong> — система, позволяющая Ев действовать автономно.</li>
@@ -1233,7 +1134,6 @@
       <a href="#game">Выбери пилота</a>
       <a href="#game2">Угадай Ангела</a>
       <a href="#gallery">Галерея</a>
-      <a href="#music">Музыка</a>
     </div>
     <div class="footer-col">
       <h4>ИНФОРМАЦИЯ</h4>
@@ -1340,10 +1240,10 @@
   ];
 
   const results = {
-    shinji: { title: "Синдзи Икари", eva: "Ева-01 🟣", desc: "Ты — чувствительный и задумчивый. Тебе сложно доверять, но ты глубоко чувствуешь мир. Твоя Ева — Ева-01!" },
-    asuka:  { title: "Аска Лэнгли Сорью", eva: "Ева-02 🔴", desc: "Ты — яркий, страстный и гордый. Не сдаёшься и всегда идёшь к цели. Твоя Ева — Ева-02!" },
-    rei:    { title: "Рей Аянами", eva: "Ева-00 🔵", desc: "Ты — спокойный, загадочный и преданный. Ты ценишь долг выше эмоций. Твоя Ева — Ева-00!" },
-    kaworu: { title: "Каору Нагиса", eva: "Ева-02 🧑", desc: "Ты — мудрый, добрый и жертвенный. Ты ищешь гармонию и понимание. Твоя Ева — Ева-02!" }
+    shinji: { title: "Синдзи Икари", eva: "Ева-01 🟣", desc: "Ты — чувствительный и задумчивый. Тебе сложно доверять, но ты глубоко чувствуешь мир." },
+    asuka:  { title: "Аска Лэнгли Сорью", eva: "Ева-02 🔴", desc: "Ты — яркий, страстный и гордый. Не сдаёшься и всегда идёшь к цели." },
+    rei:    { title: "Рей Аянами", eva: "Ева-00 🔵", desc: "Ты — спокойный, загадочный и преданный. Ты ценишь долг выше эмоций." },
+    kaworu: { title: "Каору Нагиса", eva: "Ева-02 🧑", desc: "Ты — мудрый, добрый и жертвенный. Ты ищешь гармонию и понимание." }
   };
 
   const qEl = document.getElementById('questionText');
@@ -1415,14 +1315,14 @@
 
   /* ===== ИГРА 2: АНГЕЛ ===== */
   const angels = [
-    { name: "Сакиил", emoji: "🦴", hint: "Первый Ангел, с которым сражаются люди. Похож на гигантского гуманоида с птичьим черепом и посохом. Атаковал Токио-3 в первой серии.", fact: "Сакиил — третий Ангел. Его появление заставило Гэндо срочно вызвать Синдзи в Токио-3. Убит Евой-01 в берсерк-режиме.", options: ["Сакиил", "Шамшиил", "Рамиил", "Зеруил"] },
-    { name: "Шамшиил", emoji: "🐟", hint: "Ангел в виде гигантской рыбы, плавающий в воздухе. Атаковал Токио-3 с моря, побеждён Евой-01 и Евой-02 вместе.", fact: "Шамшиил — четвёртый Ангел. Первый Ангел, которого Синдзи и Аска побеждают вместе.", options: ["Гагиил", "Шамшиил", "Израфил", "Сандалфон"] },
-    { name: "Рамиил", emoji: "🔷", hint: "Огромный синий октаэдр, парящий в воздухе. Пробурил 22 слоя брони Токио-3, чтобы добраться до NERV.", fact: "Рамиил — пятый Ангел. Уничтожен Евой-01, которая сбросила на него свою броню и пробила ядро.", options: ["Лелиил", "Бардииль", "Рамиил", "Армисаил"] },
-    { name: "Гагиил", emoji: "🕷️", hint: "Ангел в виде паука с двумя телами, соединёнными нитями. Атаковал Токио-3 ночью.", fact: "Гагиил — шестой Ангел. Побеждён слаженной работой Синдзи, Аски и Рей.", options: ["Маториил", "Гагиил", "Зеруил", "Ируил"] },
-    { name: "Израфил", emoji: "⚡", hint: "Ангел, атакующий с орбиты лазерным лучом. Похож на гигантское насекомое с двумя «крыльями».", fact: "Израфил — седьмой Ангел. Синдзи в берсерк-режиме уничтожил его в стратосфере.", options: ["Израфил", "Сандалфон", "Лелиил", "Бардииль"] },
-    { name: "Сандалфон", emoji: "🐛", hint: "Ангел в виде гигантского червя, живущий в вулкане. Ева-02 спускается в жерло.", fact: "Сандалфон — восьмой Ангел. Аска сражается с ним в лаве вулкана.", options: ["Сандалфон", "Маториил", "Ируил", "Гагиил"] },
-    { name: "Бардииль", emoji: "🖤", hint: "Ангел, заразивший Еву-03. Синдзи пришлось уничтожить Еву-03 вместе с пилотом внутри.", fact: "Бардииль — девятый Ангел. Самый трагичный эпизод: внутри Евы-03 был Тодзи, друг Синдзи.", options: ["Бардииль", "Зеруил", "Армисаил", "Лелиил"] },
-    { name: "Каору Нагиса", emoji: "🧑", hint: "Ангел в человеческом облике, пилотировавший Еву-02. Символ любви и жертвы.", fact: "Каору — семнадцатый Ангел, последний. Попросил Синдзи убить его.", options: ["Каору Нагиса", "Адам", "Лилит", "Лелиил"] }
+    { name: "Сакиил", emoji: "🦴", hint: "Первый Ангел, с которым сражаются люди. Похож на гигантского гуманоида с птичьим черепом и посохом.", fact: "Сакиил — третий Ангел. Убит Евой-01 в берсерк-режиме.", options: ["Сакиил", "Шамшиил", "Рамиил", "Зеруил"] },
+    { name: "Шамшиил", emoji: "🐟", hint: "Ангел в виде гигантской рыбы, плавающий в воздухе. Атаковал Токио-3 с моря.", fact: "Шамшиил — четвёртый Ангел. Первый, побеждённый Синдзи и Аской вместе.", options: ["Гагиил", "Шамшиил", "Израфил", "Сандалфон"] },
+    { name: "Рамиил", emoji: "🔷", hint: "Огромный синий октаэдр, парящий в воздухе. Пробурил 22 слоя брони Токио-3.", fact: "Рамиил — пятый Ангел. Уничтожен Евой-01, сбросившей на него броню.", options: ["Лелиил", "Бардииль", "Рамиил", "Армисаил"] },
+    { name: "Гагиил", emoji: "🕷️", hint: "Ангел в виде паука с двумя телами, соединёнными нитями.", fact: "Гагиил — шестой Ангел. Побеждён работой Синдзи, Аски и Рей.", options: ["Маториил", "Гагиил", "Зеруил", "Ируил"] },
+    { name: "Израфил", emoji: "⚡", hint: "Ангел, атакующий с орбиты лазерным лучом.", fact: "Израфил — седьмой Ангел. Уничтожен в стратосфере Евой-01.", options: ["Израфил", "Сандалфон", "Лелиил", "Бардииль"] },
+    { name: "Сандалфон", emoji: "🐛", hint: "Ангел в виде гигантского червя, живущий в вулкане.", fact: "Сандалфон — восьмой Ангел. Аска сражается с ним в лаве.", options: ["Сандалфон", "Маториил", "Ируил", "Гагиил"] },
+    { name: "Бардииль", emoji: "🖤", hint: "Ангел, заразивший Еву-03. Синдзи пришлось уничтожить Еву-03 с пилотом внутри.", fact: "Бардииль — девятый Ангел. Самый трагичный эпизод.", options: ["Бардииль", "Зеруил", "Армисаил", "Лелиил"] },
+    { name: "Каору Нагиса", emoji: "🧑", hint: "Ангел в человеческом облике, пилотировавший Еву-02.", fact: "Каору — семнадцатый Ангел. Попросил Синдзи убить его.", options: ["Каору Нагиса", "Адам", "Лилит", "Лелиил"] }
   ];
 
   const angelHint = document.getElementById('angelHint');
@@ -1504,71 +1404,6 @@
   };
 
   loadAngel();
-
-  /* ===== МУЗЫКАЛЬНЫЙ ПЛЕЕР ===== */
-  const tracks = [
-    { title: "A Cruel Angel's Thesis", artist: "Yoko Takahashi · OP 1995", duration: "4:05", sec: 245 },
-    { title: "Thanatos — If I Can't Be Yours", artist: "Loren & Mash · ED 1997", duration: "4:50", sec: 290 },
-    { title: "Komm, süsser Tod", artist: "Arianne · The End of Evangelion", duration: "7:50", sec: 470 },
-    { title: "Beautiful World", artist: "Hikaru Utada · Rebuild 1.0", duration: "5:15", sec: 315 }
-  ];
-
-  let trackIndex = 0;
-  let isPlaying = false;
-  let currentSec = 0;
-  let timer = null;
-
-  const playerTitle = document.getElementById('playerTitle');
-  const playerFill = document.getElementById('playerFill');
-  const playerTime = document.getElementById('playerTime');
-  const playBtn = document.getElementById('playBtn');
-  const nextBtn = document.getElementById('nextBtn');
-
-  function formatTime(s) {
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
-    return `${m}:${sec.toString().padStart(2, '0')}`;
-  }
-
-  function updatePlayer() {
-    const t = tracks[trackIndex];
-    playerTitle.textContent = t.title;
-    document.querySelector('.player-artist').textContent = t.artist;
-    playerFill.style.width = `${(currentSec / t.sec) * 100}%`;
-    playerTime.textContent = `${formatTime(currentSec)} / ${t.duration}`;
-  }
-
-  function playPause() {
-    if (isPlaying) {
-      clearInterval(timer);
-      isPlaying = false;
-      playBtn.textContent = '▶';
-    } else {
-      isPlaying = true;
-      playBtn.textContent = '⏸';
-      timer = setInterval(() => {
-        currentSec += 1;
-        if (currentSec >= tracks[trackIndex].sec) {
-          currentSec = 0;
-          trackIndex = (trackIndex + 1) % tracks.length;
-        }
-        updatePlayer();
-      }, 1000);
-    }
-  }
-
-  playBtn.onclick = playPause;
-  nextBtn.onclick = () => {
-    trackIndex = (trackIndex + 1) % tracks.length;
-    currentSec = 0;
-    updatePlayer();
-    if (isPlaying) {
-      clearInterval(timer);
-      playPause();
-    }
-  };
-
-  updatePlayer();
 </script>
 
 </body>
