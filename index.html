@@ -82,7 +82,6 @@
     position: relative; overflow: hidden;
   }
 
-  /* ЧИБИ-ПИЛОТЫ В HERO */
   .chibi-row {
     display: flex;
     justify-content: center;
@@ -384,6 +383,195 @@
     border-color: var(--accent2); color: var(--accent2);
   }
 
+  /* ===== EVENTS ===== */
+  .events-grid {
+    display: grid;
+    gap: 30px;
+  }
+
+  .event-card {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+    box-shadow: 0 10px 30px var(--shadow);
+  }
+
+  .event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px var(--shadow);
+    border-color: var(--accent);
+  }
+
+  .event-image {
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  }
+
+  .event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s ease, filter 0.6s ease;
+  }
+
+  .event-card:hover .event-image img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
+
+  .event-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 60%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+  }
+
+  .event-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+  }
+
+  .event-number {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.15);
+    z-index: 2;
+    letter-spacing: -5px;
+    line-height: 1;
+    font-family: 'Georgia', serif;
+    pointer-events: none;
+  }
+
+  .event-info {
+    padding: 35px 35px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .event-info h3 {
+    font-size: 1.8rem;
+    color: var(--accent2);
+    margin-bottom: 6px;
+  }
+
+  .event-jp {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+
+  .event-info p {
+    font-size: 0.95rem;
+    opacity: 0.88;
+    line-height: 1.65;
+  }
+
+  .event-info strong {
+    color: var(--accent);
+  }
+
+  .event-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .event-other {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .event-other-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: all 0.3s;
+    border-left: 4px solid var(--accent);
+  }
+
+  .event-other-item:hover {
+    transform: translateX(8px);
+    border-left-color: var(--accent2);
+    box-shadow: 0 10px 25px var(--shadow);
+  }
+
+  .event-other-number {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--accent2);
+    opacity: 0.4;
+    line-height: 1;
+    font-family: 'Georgia', serif;
+    flex-shrink: 0;
+  }
+
+  .event-other-item h4 {
+    color: var(--accent2);
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .event-other-item p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 800px) {
+    .event-card {
+      grid-template-columns: 1fr;
+    }
+    .event-image {
+      min-height: 220px;
+    }
+    .event-number {
+      font-size: 3.5rem;
+    }
+    .event-info {
+      padding: 25px;
+    }
+    .event-info h3 {
+      font-size: 1.4rem;
+    }
+    .event-other {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* ===== TIMELINE ===== */
   .timeline { position: relative; padding: 20px 0; }
   .timeline::before {
@@ -456,7 +644,6 @@
     box-shadow: 0 20px 40px var(--shadow);
   }
 
-  /* Карточки с фото */
   .char-card.has-photo {
     padding: 0;
     overflow: hidden;
@@ -535,7 +722,6 @@
     line-height: 1.55;
   }
 
-  /* Старые карточки без фото (Киил) */
   .char-avatar {
     width: 70px; height: 70px; border-radius: 50%;
     background: linear-gradient(135deg, var(--accent2), var(--accent));
@@ -872,6 +1058,7 @@
     <a href="#pilots">Пилоты</a>
     <a href="#characters">Персонажи</a>
     <a href="#timeline">Таймлайн</a>
+    <a href="#events">События</a>
     <a href="#gallery">Галерея</a>
     <a href="#compare">Rebuild</a>
     <a href="#game">Пилот</a>
@@ -885,7 +1072,6 @@
 <section class="hero">
   <div class="glow"></div>
 
-  <!-- ЧИБИ-ПИЛОТЫ -->
   <div class="chibi-row">
     <div class="chibi-item">
       <img src="images/chibi-asuka.png" alt="Чиби Аска" class="chibi-img">
@@ -915,7 +1101,6 @@
 <section id="evas">
   <h2>Евангелионы (Евы)</h2>
 
-  <!-- БАННЕР С АРБУЗАМИ -->
   <div class="watermelon-banner">
     <img src="images/watermelon.png" alt="Арбузы">
     <div class="watermelon-text">
@@ -1088,7 +1273,6 @@
   <h2>🌐 Ключевые персонажи NERV</h2>
   <div class="char-grid">
 
-    <!-- ГЭНДО -->
     <div class="char-card has-photo reveal">
       <div class="char-image">
         <span class="char-badge">Командующий NERV</span>
@@ -1101,7 +1285,6 @@
       </div>
     </div>
 
-    <!-- МИСАТО -->
     <div class="char-card has-photo reveal">
       <div class="char-image">
         <span class="char-badge">Капитан, командир пилотов</span>
@@ -1114,7 +1297,6 @@
       </div>
     </div>
 
-    <!-- КОЗО -->
     <div class="char-card has-photo reveal">
       <div class="char-image">
         <span class="char-badge">Заместитель командующего</span>
@@ -1127,7 +1309,6 @@
       </div>
     </div>
 
-    <!-- РИЦУКО -->
     <div class="char-card has-photo reveal">
       <div class="char-image">
         <span class="char-badge">Главный научный сотрудник</span>
@@ -1140,7 +1321,6 @@
       </div>
     </div>
 
-    <!-- КАДЗИ -->
     <div class="char-card has-photo reveal">
       <div class="char-image">
         <span class="char-badge">Двойной агент</span>
@@ -1153,7 +1333,6 @@
       </div>
     </div>
 
-    <!-- КИИЛ ЛОРЕНЦ (без фото) -->
     <div class="char-card reveal">
       <div class="char-avatar">🕶️</div>
       <h3>Киил Лоренц</h3>
@@ -1240,6 +1419,76 @@
         <div class="characters">👤 Синдзи · Мисато · Аска · Рей</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- СОБЫТИЯ -->
+<section id="events">
+  <h2>🌋 События: Удары</h2>
+  <p style="opacity: 0.8; margin-bottom: 30px; font-size: 1.05rem;">Удары — катастрофические события, меняющие судьбу человечества. Каждый удар приближает мир к Проекту совершенствования.</p>
+
+  <div class="events-grid">
+
+    <!-- ТРЕТИЙ УДАР -->
+    <div class="event-card reveal">
+      <div class="event-image">
+        <span class="event-badge">Third Impact</span>
+        <span class="event-number">03</span>
+        <img src="images/impact3.png" alt="Третий удар">
+      </div>
+      <div class="event-info">
+        <h3>Третий удар</h3>
+        <div class="event-jp">サードインパクト · The End of Evangelion</div>
+        <p>Финальное событие, запущенное <strong>Гэндо Икари</strong> и <strong>SEELE</strong> в фильме <em>The End of Evangelion</em>. Лилит, слившаяся с Рей, поглощает души всех людей, чтобы объединить их в единое сознание — устранить AT-поля и индивидуальность.</p>
+        <p style="margin-top: 10px;">Синдзи в Еве-01 отвергает Единство и выбирает индивидуальность, но человечество уже превращено в LCL. Выживают лишь Синдзи и Аска — как новый Адам и Ева.</p>
+        <div class="event-traits">
+          <span class="trait">🍉 LCL-океан</span>
+          <span class="trait">✝️ Копьё Лонгина</span>
+          <span class="trait">💜 Лилит</span>
+          <span class="trait">🌍 Токио-3 уничтожен</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЧЕТВЁРТЫЙ УДАР -->
+    <div class="event-card reveal">
+      <div class="event-image">
+        <span class="event-badge">Fourth Impact</span>
+        <span class="event-number">04</span>
+        <img src="images/impact4.png" alt="Четвёртый удар">
+      </div>
+      <div class="event-info">
+        <h3>Четвёртый удар</h3>
+        <div class="event-jp">フォースインパクト · Evangelion 3.0</div>
+        <p>Событие в фильме <em>Evangelion: 3.0 You Can (Not) Redo</em>. Запущено <strong>Каору Нагисой</strong> и <strong>Синдзи</strong> при активации <strong>Евы-13</strong> — двуместной Евы, пробуждённой двумя Копьями Лонгина.</p>
+        <p style="margin-top: 10px;">Каору пытается остановить процесс, пожертвовав собой, но удар уже начался. Синдзи вынужден снова стать пилотом, чтобы остановить катастрофу. Мир превращается в красную пустошь.</p>
+        <div class="event-traits">
+          <span class="trait">⚪ Ева-13</span>
+          <span class="trait">✝️ Два Копья</span>
+          <span class="trait">💀 Смерть Каору</span>
+          <span class="trait">🔴 Красный мир</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПЕРВЫЙ И ВТОРОЙ УДАРЫ -->
+    <div class="event-other reveal">
+      <div class="event-other-item">
+        <span class="event-other-number">01</span>
+        <div>
+          <h4>Первый удар</h4>
+          <p>Столкновение Адама и Лилит. Источник жизни на Земле и причина появления людей и Ангелов.</p>
+        </div>
+      </div>
+      <div class="event-other-item">
+        <span class="event-other-number">02</span>
+        <div>
+          <h4>Второй удар</h4>
+          <p>2000 год. Контакт с Адамом в Антарктиде. Катастрофа, уничтожившая половину человечества. До начала сериала.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1382,7 +1631,11 @@
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Третий удар</div>
-      <div class="gloss-def">Событие, которое уничтожит человечество и создаст нового Адама.</div>
+      <div class="gloss-def">Событие, которое уничтожит человечество и создаст нового Адама. Главная угроза и цель SEELE.</div>
+    </div>
+    <div class="gloss-item reveal">
+      <div class="gloss-term">Четвёртый удар</div>
+      <div class="gloss-def">Событие в Rebuild 3.0, запущенное Евой-13. Остановлено ценой жизни Каору Нагисы.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Проект совершенствования</div>
@@ -1391,10 +1644,6 @@
     <div class="gloss-item reveal">
       <div class="gloss-term">Пилоты (Дитя)</div>
       <div class="gloss-def">Подростки 14 лет, выбранные для управления Евами.</div>
-    </div>
-    <div class="gloss-item reveal">
-      <div class="gloss-term">Токио-3</div>
-      <div class="gloss-def">Город-крепость, построенный над NERV. Постоянно разрушается в боях с Ангелами.</div>
     </div>
     <div class="gloss-item reveal">
       <div class="gloss-term">Берсерк</div>
@@ -1458,6 +1707,7 @@
       <a href="#pilots">Пилоты</a>
       <a href="#characters">Персонажи</a>
       <a href="#timeline">Таймлайн</a>
+      <a href="#events">События</a>
     </div>
     <div class="footer-col">
       <h4>ИНТЕРАКТИВ</h4>
