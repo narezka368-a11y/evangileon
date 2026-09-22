@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Евангелион — Neon Genesis Evangelion</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --text: #1a1a1a;
+    --card: #ffffff;
+    --accent: #b3001b;
+    --accent2: #7b00ff;
+    --border: #ddd;
+    --shadow: rgba(0,0,0,0.12);
+  }
+
+  body.dark {
+    --bg: #0d0d12;
+    --text: #e6e6e6;
+    --card: #16161f;
+    --accent: #ff2a4d;
+    --accent2: #a855f7;
+    --border: #2a2a38;
+    --shadow: rgba(0,0,0,0.6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.4s ease, color 0.4s ease;
+    line-height: 1.6;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 40px;
+    background: var(--card);
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 4px 20px var(--shadow);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .logo {
+    font-size: 1.4rem; font-weight: 800; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase;
+  }
+  .logo span { color: var(--accent2); }
+
+  nav a {
+    color: var(--text); text-decoration: none;
+    margin: 0 10px; font-weight: 500; transition: color 0.3s;
+    font-size: 0.95rem;
+  }
+  nav a:hover { color: var(--accent); }
+
+  .theme-btn {
+    background: var(--accent); color: white; border: none;
+    padding: 10px 18px; border-radius: 30px; cursor: pointer;
+    font-weight: 600; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .theme-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
+
+  /* ===== HERO ===== */
+  .hero {
+    text-align: center; padding: 90px 20px; position: relative; overflow: hidden;
+  }
+  .hero h1 {
+    font-size: 3.8rem; font-weight: 900; letter-spacing: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; animation: fadeUp 1.2s ease;
+  }
+  .hero p { margin-top: 20px; font-size: 1.2rem; opacity: 0.8; animation: fadeUp 1.6s ease; }
+  .hero .glow {
+    position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--accent2), transparent 70%);
+    top: -150px; left: 50%; transform: translateX(-50%);
+    opacity: 0.25; filter: blur(60px);
+    animation: pulse 4s infinite alternate;
+  }
+  @keyframes pulse {
+    from { opacity: 0.15; transform: translateX(-50%) scale(1); }
+    to   { opacity: 0.35; transform: translateX(-50%) scale(1.2); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTIONS ===== */
+  section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+  h2 {
+    font-size: 2.2rem; margin-bottom: 30px;
+    border-left: 6px solid var(--accent); padding-left: 15px;
+    color: var(--accent);
+  }
+
+  /* ===== EVA CARDS ===== */
+  .eva-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .eva-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 25px; cursor: pointer;
+    transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .eva-card::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: left 0.5s;
+  }
+  .eva-card:hover::before { left: 0; }
+  .eva-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px var(--shadow);
+    border-color: var(--accent);
+  }
+  .eva-card h3 { font-size: 1.5rem; color: var(--accent2); margin-bottom: 10px; }
+  .eva-card .pilot { font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+  .eva-card p { font-size: 0.95rem; opacity: 0.85; }
+  .eva-icon { font-size: 2.5rem; margin-bottom: 15px; animation: float 3s ease-in-out infinite; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-10px); }
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding: 20px 0; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 50%; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+    transform: translateX(-50%); border-radius: 4px;
+  }
+  .tl-item {
+    position: relative; width: 50%; padding: 20px 40px;
+    box-sizing: border-box; opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .tl-item.active { opacity: 1; transform: translateY(0); }
+  .tl-item:nth-child(odd) { left: 0; text-align: right; }
+  .tl-item:nth-child(even) { left: 50%; text-align: left; }
+  .tl-item::after {
+    content: ''; position: absolute; top: 30px;
+    width: 18px; height: 18px; background: var(--accent);
+    border-radius: 50%; box-shadow: 0 0 20px var(--accent); z-index: 2;
+  }
+  .tl-item:nth-child(odd)::after { right: -9px; }
+  .tl-item:nth-child(even)::after { left: -9px; }
+  .tl-content {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .tl-content:hover {
+    transform: scale(1.03); border-color: var(--accent2);
+    box-shadow: 0 10px 30px var(--shadow);
+  }
+  .tl-content h3 { color: var(--accent2); font-size: 1.2rem; margin-bottom: 6px; }
+  .tl-content .ep {
+    display: inline-block; background: var(--accent); color: white;
+    font-size: 0.75rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .tl-content p { font-size: 0.92rem; opacity: 0.85; }
+
+  @media (max-width: 700px) {
+    .timeline::before { left: 20px; }
+    .tl-item, .tl-item:nth-child(odd), .tl-item:nth-child(even) {
+      width: 100%; left: 0; text-align: left;
+      padding-left: 50px; padding-right: 10px;
+    }
+    .tl-item::after, .tl-item:nth-child(odd)::after, .tl-item:nth-child(even)::after {
+      left: 12px; right: auto;
+    }
+  }
+
+  /* ===== GAME COMMON ===== */
+  .game-wrap {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 10px 40px var(--shadow);
+  }
+  .game-wrap h3 {
+    color: var(--accent2); font-size: 1.6rem; margin-bottom: 10px;
+  }
+  .game-wrap .subtitle {
+    opacity: 0.75; margin-bottom: 25px; font-size: 0.95rem;
+  }
+
+  .question {
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    color: white; padding: 22px; border-radius: 14px;
+    font-size: 1.15rem; font-weight: 600; margin-bottom: 25px;
+    min-height: 90px; display: flex; align-items: center;
+    justify-content: center; text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
+  .answers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px; margin-bottom: 25px;
+  }
+  .answer-btn {
+    background: var(--bg); color: var(--text);
+    border: 2px solid var(--border); padding: 16px;
+    border-radius: 12px; cursor: pointer;
+    font-weight: 600; font-size: 0.95rem;
+    transition: all 0.3s; font-family: inherit;
+  }
+  .answer-btn:hover:not(:disabled) {
+    transform: translateY(-4px); border-color: var(--accent);
+    box-shadow: 0 10px 25px var(--shadow);
+  }
+  .answer-btn:disabled { cursor: not-allowed; opacity: 0.5; }
+  .answer-btn.correct {
+    background: #16a34a; color: white; border-color: #16a34a;
+    animation: correctPulse 0.6s;
+  }
+  .answer-btn.wrong {
+    background: #dc2626; color: white; border-color: #dc2626;
+    animation: wrongShake 0.5s;
+  }
+  @keyframes correctPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+  @keyframes wrongShake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+
+  .progress-bar {
+    height: 10px; background: var(--border);
+    border-radius: 10px; overflow: hidden; margin-bottom: 20px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0%; transition: width 0.5s; border-radius: 10px;
+  }
+
+  .score-info {
+    display: flex; justify-content: space-between;
+    margin-bottom: 15px; font-weight: 600; font-size: 0.95rem;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .score-info span { color: var(--accent2); }
+
+  .restart-btn {
+    background: var(--accent); color: white; border: none;
+    padding: 14px 30px; border-radius: 30px;
+    font-weight: 700; font-size: 1rem; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: inherit; display: none;
+    margin: 8px;
+  }
+  .restart-btn:hover {
+    transform: scale(1.06); box-shadow: 0 0 25px var(--accent);
+  }
+
+  /* ===== GAME 2: ANGEL ===== */
+  .angel-silhouette {
+    width: 160px; height: 160px; margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; color: white;
+    box-shadow: 0 0 40px var(--accent2);
+    animation: angelFloat 3s ease-in-out infinite;
+    position: relative;
+  }
+  .angel-silhouette::before {
+    content: ''; position: absolute; inset: -15px;
+    border: 2px dashed var(--accent);
+    border-radius: 50%;
+    animation: spinRing 12s linear infinite;
+  }
+  @keyframes angelFloat {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-15px); }
+  }
+  @keyframes spinRing {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .angel-hint {
+    background: var(--bg); border: 2px dashed var(--accent2);
+    border-radius: 12px; padding: 18px; margin-bottom: 22px;
+    font-style: italic; opacity: 0.9; font-size: 1rem;
+  }
+
+  .angel-fact {
+    background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(255,42,77,0.15));
+    border-left: 4px solid var(--accent2);
+    border-radius: 10px; padding: 18px; margin-top: 20px;
+    text-align: left; font-size: 0.95rem;
+    display: none;
+    animation: fadeUp 0.5s;
+  }
+  .angel-fact.show { display: block; }
+
+  /* ===== ARTICLE ===== */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 40px; line-height: 1.8;
+  }
+  article h3 { color: var(--accent2); margin: 25px 0 12px; }
+  article ul { margin-left: 25px; margin-top: 10px; }
+  article li { margin-bottom: 8px; }
+
+  footer {
+    text-align: center; padding: 40px 20px;
+    background: var(--card); border-top: 2px solid var(--accent);
+    margin-top: 80px; opacity: 0.8;
+  }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 2.2rem; }
+    header { padding: 15px; justify-content: center; }
+    nav a { margin: 0 6px; font-size: 0.85rem; }
+    article, .game-wrap { padding: 25px; }
+    .angel-silhouette { width: 120px; height: 120px; font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NGE <span>//</span> Евангелион</div>
+  <nav>
+    <a href="#evas">Евы</a>
+    <a href="#pilots">Пилоты</a>
+    <a href="#timeline">Таймлайн</a>
+    <a href="#game">Пилот</a>
+    <a href="#game2">Ангелы</a>
+    <a href="#article">Статья</a>
+  </nav>
+  <button class="theme-btn" id="themeBtn">🌙 Тёмная</button>
+</header>
+
+<section class="hero">
+  <div class="glow"></div>
+  <h1>NEON GENESIS EVANGELION</h1>
+  <p>«Беги, или тебя заменит другой» — культовое аниме 1995 года</p>
+</section>
+
+<!-- ЕВЫ -->
+<section id="evas">
+  <h2>Евангелионы (Евы)</h2>
+  <div class="eva-grid">
+    <div class="eva-card reveal">
+      <div class="eva-icon">🟣</div>
+      <h3>Ева-01</h3>
+      <div class="pilot">Пилот: Синдзи Икари</div>
+      <p>Прототип, созданный на основе Лилит. Обладает берсерк-режимом. Внутри — душа Юи Икари.</p>
+    </div>
+    <div class="eva-card reveal">
+      <div class="eva-icon">🔴</div>
+      <h3>Ева-02</h3>
+      <div class="pilot">Пилот: Аска Лэнгли Сорью</div>
+      <p>Первая Ева, созданная для реального боя. Красного цвета, произведена в Германии.</p>
+    </div>
+    <div class="eva-card reveal">
+      <div class="eva-icon">🔵</div>
+      <h3>Ева-00</h3>
+      <div class="pilot">Пилот: Рей Аянами</div>
+      <p>Прототип для тестов. Синего цвета. Душа внутри связана с Лилит.</p>
+    </div>
+    <div class="eva-card reveal">
+      <div class="eva-icon">⚫</div>
+      <h3>Ева-03</h3>
+      <div class="pilot">Пилот: Тодзи Судзухара</div>
+      <p>Захвачена ангелом Бардиилом. Уничтожена Евой-01. Трагический эпизод сериала.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ПИЛОТЫ -->
+<section id="pilots">
+  <h2>Пилоты Ев</h2>
+  <div class="eva-grid">
+    <div class="eva-card reveal">
+      <div class="eva-icon">👦</div>
+      <h3>Синдзи Икари</h3>
+      <div class="pilot">Ева-01</div>
+      <p>Третий Дитя. Замкнутый подросток, страдающий от нехватки любви отца.</p>
+    </div>
+    <div class="eva-card reveal">
+      <div class="eva-icon">👧</div>
+      <h3>Рей Аянами</h3>
+      <div class="pilot">Ева-00</div>
+      <p>Первое Дитя. Загадочная, молчаливая, преданная Гэндо. Клон Юи Икари.</p>
+    </div>
+    <div class="eva-card reveal">
+      <div class="eva-icon">👩‍🦰</div>
+      <h3>Аска Лэнгли Сорью</h3>
+      <div class="pilot">Ева-02</div>
+      <p>Второе Дитя. Гордая, вспыльчивая, скрывающая глубокую травму детства.</p>
+    </div>
+    <div class="eva-card reveal">
+      <div class="eva-icon">🧑</div>
+      <h3>Каору Нагиса</h3>
+      <div class="pilot">Ева-02 (временно)</div>
+      <p>Пятое Дитя, Ангел в человеческом обличье. Символ любви и жертвы.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ТАЙМЛАЙН -->
+<section id="timeline">
+  <h2>📅 Таймлайн сериала</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 1</span>
+        <h3>Нападение Ангела</h3>
+        <p>Синдзи Икари призван отцом в Токио-3. Он вынужден сесть в Еву-01 без подготовки и сразиться с третьим Ангелом — Сакиилом.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 2–4</span>
+        <h3>Знакомство с NERV</h3>
+        <p>Синдзи знакомится с Мисато, Рей и бытом в Токио-3. Первые бои, первые сомнения — «зачем я пилотирую Еву?».</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 5–8</span>
+        <h3>Аска и Ева-02</h3>
+        <p>Прибывает Аска Лэнгли Сорью — Второе Дитя. Она пилотирует Еву-02 и демонстрирует агрессивный стиль боя против Ангелов.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 9–13</span>
+        <h3>Совместные бои</h3>
+        <p>Синдзи и Аска учатся работать в паре. Появляются новые Ангелы, а также раскрываются тайны NERV и SEELE.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 14–18</span>
+        <h3>Трагедия Евы-03</h3>
+        <p>Тодзи становится пилотом Евы-03, но Еву захватывает Ангел. Гэндо приказывает Синдзи уничтожить её — внутри его друг.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 19–24</span>
+        <h3>Падение Каору и Аски</h3>
+        <p>Аска теряет рассудок. Появляется Каору Нагиса — Ангел, которого Синдзи вынужден убить. Психологический надлом героев.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ЭПИЗОД 25–26</span>
+        <h3>Проект совершенствования</h3>
+        <p>Финальные серии — путешествие в подсознание Синдзи. Ответы на вопросы о смысле существования и выборе быть собой.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-content">
+        <span class="ep">ФИЛЬМ</span>
+        <h3>The End of Evangelion</h3>
+        <p>Альтернативная концовка — Третий удар, гибель человечества и выбор Синдзи между Единством и индивидуальностью.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ИГРА 1 -->
+<section id="game">
+  <h2>🎮 Мини-игра «Выбери пилота»</h2>
+  <div class="game-wrap">
+    <h3>Кто подходит на роль пилота?</h3>
+    <p class="subtitle">Ответь на 6 вопросов и узнай, какая Ева твоя!</p>
+
+    <div class="score-info">
+      <span>Вопрос: <span id="qNum">1 / 6</span></span>
+      <span>Счёт: <span id="scoreVal">0</span></span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="question" id="questionText">Загрузка...</div>
+    <div class="answers" id="answersBox"></div>
+
+    <button class="restart-btn" id="restartBtn">🔄 Пройти заново</button>
+  </div>
+</section>
+
+<!-- ИГРА 2: УГАДАЙ АНГЕЛА -->
+<section id="game2">
+  <h2>👼 Мини-игра «Угадай Ангела»</h2>
+  <div class="game-wrap">
+    <h3>Кто этот Ангел?</h3>
+    <p class="subtitle">Прочитай описание и выбери правильного Ангела из 4 вариантов</p>
+
+    <div class="score-info">
+      <span>Ангел: <span id="angelNum">1 / 8</span></span>
+      <span>Правильно: <span id="angelScore">0</span></span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="angelProgress"></div>
+    </div>
+
+    <div class="angel-silhouette">👼</div>
+
+    <div class="angel-hint" id="angelHint">Загрузка...</div>
+
+    <div class="answers" id="angelAnswers"></div>
+
+    <div class="angel-fact" id="angelFact"></div>
+
+    <button class="restart-btn" id="angelRestart">🔄 Пройти заново</button>
+  </div>
+</section>
+
+<!-- СТАТЬЯ -->
+<section id="article">
+  <h2>Статья: Кто управлял Евами?</h2>
+  <article class="reveal">
+    <p><strong>Евангелионы</strong> — это биомеханические человекоподобные машины, созданные организацией <em>NERV</em> для борьбы с Ангелами. Но управлять ими может не каждый: для синхронизации с Ев нужен особый психологический профиль и скрытая связь с душой внутри машины.</p>
+
+    <h3>🏢 Организация NERV</h3>
+    <p>NERV — секретная организация под командованием <strong>Гэндо Икари</strong>, которая формально подчиняется ООН, но преследует собственные цели — <em>Проект совершенствования человечества</em>.</p>
+
+    <h3>👥 Кто управлял Евами?</h3>
+    <ul>
+      <li><strong>Синдзи Икари</strong> — пилот Евы-01. Сын Гэндо. Высокая синхронизация за счёт души Юи Икари.</li>
+      <li><strong>Рей Аянами</strong> — пилот Евы-00. Клон, созданный из ДНК Юи и Лилит.</li>
+      <li><strong>Аска Лэнгли Сорью</strong> — пилот Евы-02. Немка, выбранная за агрессивный стиль боя.</li>
+      <li><strong>Тодзи Судзухара</strong> — пилот Евы-03 (погиб при её уничтожении).</li>
+      <li><strong>Каору Нагиса</strong> — пятое Дитя, Ангел. Управлял Евой-02 после Аски.</li>
+      <li><strong>Мари Макинами</strong> — пилот Евы-08 (в Rebuild).</li>
+      <li><strong>Дамми-плаг</strong> — система автономного управления Евой без пилота.</li>
+    </ul>
+
+    <h3>🧠 Как работает синхронизация?</h3>
+    <p>Пилот садится в капсулу — <em>энтри-плаг</em>, заполненную жидкостью LCL. Через нейроинтерфейс его сознание связывается с ядром Евы. Чем выше <strong>синхронизация</strong>, тем точнее Ева повторяет движения пилота.</p>
+
+    <h3>🔑 Ключевые фигуры управления</h3>
+    <ul>
+      <li><strong>Гэндо Икари</strong> — командующий NERV.</li>
+      <li><strong>Козо Фуюцуки</strong> — заместитель командующего.</li>
+      <li><strong>Мисато Кацураги</strong> — тактический командир пилотов.</li>
+      <li><strong>Рицуко Акаги</strong> — главный научный сотрудник.</li>
+    </ul>
+  </article>
+</section>
+
+<footer>
+  <p>© 2025 Neon Genesis Evangelion Fan Site | Создано с 💜 для фанатов</p>
+</footer>
+
+<script>
+  /* ===== ТЕМА ===== */
+  const btn = document.getElementById('themeBtn');
+  const body = document.body;
+  if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    btn.textContent = '☀️ Светлая';
+  }
+  btn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    const isDark = body.classList.contains('dark');
+    btn.textContent = isDark ? '☀️ Светлая' : '🌙 Тёмная';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  /* ===== REVEAL ===== */
+  const reveals = document.querySelectorAll('.reveal, .tl-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  /* ===== ИГРА 1: ПИЛОТ ===== */
+  const questions = [
+    { q: "Как ты обычно ведёшь себя в конфликте?", answers: [
+      { text: "Избегаю и ухожу в себя", type: "shinji" },
+      { text: "Иду напролом, не сдаюсь", type: "asuka" },
+      { text: "Молча выполняю свой долг", type: "rei" },
+      { text: "Ищу понимания и диалога", type: "kaworu" }
+    ]},
+    { q: "Что для тебя важнее всего?", answers: [
+      { text: "Чтобы меня любили и замечали", type: "shinji" },
+      { text: "Победа и признание", type: "asuka" },
+      { text: "Смысл и предназначение", type: "rei" },
+      { text: "Гармония и мир в душе", type: "kaworu" }
+    ]},
+    { q: "Как ты относишься к ответственности?", answers: [
+      { text: "Боюсь её, но беру на себя", type: "shinji" },
+      { text: "Люблю быть в центре событий", type: "asuka" },
+      { text: "Принимаю как данность", type: "rei" },
+      { text: "Готов жертвовать собой ради других", type: "kaworu" }
+    ]},
+    { q: "Твой стиль боя?", answers: [
+      { text: "Импульсивный, эмоциональный", type: "shinji" },
+      { text: "Агрессивный, с напором", type: "asuka" },
+      { text: "Хладнокровный, по приказу", type: "rei" },
+      { text: "Осмысленный, с состраданием", type: "kaworu" }
+    ]},
+    { q: "Как ты справляешься с одиночеством?", answers: [
+      { text: "Погружаюсь в музыку и мечты", type: "shinji" },
+      { text: "Занимаюсь собой, чтобы быть лучшим", type: "asuka" },
+      { text: "Просто существую — это норма", type: "rei" },
+      { text: "Ищу связь с другими душами", type: "kaworu" }
+    ]},
+    { q: "Что бы ты выбрал в финале?", answers: [
+      { text: "Быть собой, даже если больно", type: "shinji" },
+      { text: "Бороться до последнего", type: "asuka" },
+      { text: "Исчезнуть ради чужого счастья", type: "rei" },
+      { text: "Подарить человечеству шанс", type: "kaworu" }
+    ]}
+  ];
+
+  const results = {
+    shinji: { title: "Синдзи Икари", eva: "Ева-01 🟣", desc: "Ты — чувствительный и задумчивый. Тебе сложно доверять, но ты глубоко чувствуешь мир." },
+    asuka:  { title: "Аска Лэнгли Сорью", eva: "Ева-02 🔴", desc: "Ты — яркий, страстный и гордый. Не сдаёшься и всегда идёшь к цели." },
+    rei:    { title: "Рей Аянами", eva: "Ева-00 🔵", desc: "Ты — спокойный, загадочный и преданный. Ты ценишь долг выше эмоций." },
+    kaworu: { title: "Каору Нагиса", eva: "Ева-02 🧑", desc: "Ты — мудрый, добрый и жертвенный. Ты ищешь гармонию и понимание." }
+  };
+
+  const qEl = document.getElementById('questionText');
+  const answersBox = document.getElementById('answersBox');
+  const qNum = document.getElementById('qNum');
+  const scoreVal = document.getElementById('scoreVal');
+  const progressFill = document.getElementById('progressFill');
+  const restartBtn = document.getElementById('restartBtn');
+
+  let currentQ = 0, score = 0, userTypes = [];
+
+  function loadQuestion() {
+    if (currentQ >= questions.length) { showResult(); return; }
+    const q = questions[currentQ];
+    qEl.textContent = q.q;
+    qNum.textContent = `${currentQ + 1} / ${questions.length}`;
+    progressFill.style.width = `${(currentQ / questions.length) * 100}%`;
+    answersBox.innerHTML = '';
+    q.answers.forEach(a => {
+      const btnA = document.createElement('button');
+      btnA.className = 'answer-btn';
+      btnA.textContent = a.text;
+      btnA.onclick = () => {
+        answersBox.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+        btnA.classList.add('correct');
+        userTypes.push(a.type); score++;
+        scoreVal.textContent = score;
+        currentQ++;
+        setTimeout(loadQuestion, 500);
+      };
+      answersBox.appendChild(btnA);
+    });
+  }
+
+  function showResult() {
+    progressFill.style.width = '100%';
+    qEl.innerHTML = '🎉 Считаем результат...';
+    answersBox.innerHTML = '';
+    qNum.textContent = `${questions.length} / ${questions.length}`;
+
+    const counts = {};
+    userTypes.forEach(t => counts[t] = (counts[t] || 0) + 1);
+    let winner = 'shinji', max = 0;
+    for (const t in counts) if (counts[t] > max) { max = counts[t]; winner = t; }
+    const r = results[winner];
+
+    setTimeout(() => {
+      qEl.innerHTML = `
+        <div style="text-align:center;">
+          <div style="font-size:2.5rem; margin-bottom:10px;">🎯</div>
+          <div style="font-size:1.4rem; margin-bottom:8px;">Ты — <strong>${r.title}</strong></div>
+          <div style="font-size:1.1rem; opacity:0.9;">Твоя Ева: <strong>${r.eva}</strong></div>
+        </div>`;
+      answersBox.innerHTML = `
+        <div style="grid-column: 1 / -1; background: var(--bg); padding: 20px; border-radius: 12px; border: 2px solid var(--accent2);">
+          <p>${r.desc}</p>
+        </div>`;
+      restartBtn.style.display = 'inline-block';
+    }, 500);
+  }
+
+  restartBtn.onclick = () => {
+    currentQ = 0; score = 0; userTypes = [];
+    scoreVal.textContent = 0;
+    progressFill.style.width = '0%';
+    restartBtn.style.display = 'none';
+    loadQuestion();
+  };
+
+  loadQuestion();
+
+  /* ===== ИГРА 2: УГАДАЙ АНГЕЛА ===== */
+  const angels = [
+    {
+      name: "Сакиил",
+      emoji: "🦴",
+      hint: "Первый Ангел, с которым сражаются люди. Похож на гигантского гуманоида с птичьим черепом и посохом. Атаковал Токио-3 в первой серии.",
+      fact: "Сакиил — третий Ангел (после Адама и Лилит). Его появление заставило Гэндо срочно вызвать Синдзи в Токио-3. Убит Евой-01 в берсерк-режиме.",
+      options: ["Сакиил", "Шамшиил", "Рамиил", "Зеруил"]
+    },
+    {
+      name: "Шамшиил",
+      emoji: "🐟",
+      hint: "Ангел в виде гигантской рыбы, плавающий в воздухе. Атаковал Токио-3 с моря, был побеждён объединёнными силами Евы-01 и Евы-02.",
+      fact: "Шамшиил — четвёртый Ангел. Это первый Ангел, которого Синдзи и Аска побеждают вместе, что символизирует начало их партнёрства.",
+      options: ["Гагиил", "Шамшиил", "Израфил", "Сандалфон"]
+    },
+    {
+      name: "Рамиил",
+      emoji: "🔷",
+      hint: "Огромный синий октаэдр, парящий в воздухе. Пробурил 22 слоя брони Токио-3, чтобы добраться до NERV. Его ядро — в центре.",
+      fact: "Рамиил — пятый Ангел, один из самых узнаваемых. Уничтожен Евой-01, которая сбросила на него свою броню и пробила ядро. В Rebuild его роль гораздо больше.",
+      options: ["Лелиил", "Бардииль", "Рамиил", "Армисаил"]
+    },
+    {
+      name: "Гагиил",
+      emoji: "🕷️",
+      hint: "Ангел в виде паука с двумя телами, соединёнными нитями. Атаковал Токио-3 ночью, был побеждён объединённой атакой всех трёх Ев.",
+      fact: "Гагиил — шестой Ангел. Его ядро находилось в одном из тел, а щупальца другого атаковали Ев. Побеждён слаженной работой Синдзи, Аски и Рей.",
+      options: ["Маториил", "Гагиил", "Зеруил", "Ируил"]
+    },
+    {
+      name: "Израфил",
+      emoji: "⚡",
+      hint: "Ангел, атакующий с орбиты лазерным лучом. Похож на гигантское насекомое с двумя «крыльями»-крышками. Побеждён Евой-01 в берсерке.",
+      fact: "Израфил — седьмой Ангел. Его атака выжгла город. Синдзи в берсерк-режиме Евы-01 уничтожил его прямо в стратосфере. Один из самых эпичных боёв сериала.",
+      options: ["Израфил", "Сандалфон", "Лелиил", "Бардииль"]
+    },
+    {
+      name: "Сандалфон",
+      emoji: "🐛",
+      hint: "Ангел в виде гигантского червя, живущий в вулкане. Ева-02 спускается в жерло, чтобы уничтожить его. Один из самых напряжённых боев.",
+      fact: "Сандалфон — восьмой Ангел. Аска сражается с ним в лаве вулкана, используя оборудование для глубоководного погружения. Ева-02 едва не погибает.",
+      options: ["Сандалфон", "Маториил", "Ируил", "Гагиил"]
+    },
+    {
+      name: "Бардииль",
+      emoji: "🖤",
+      hint: "Ангел, заразивший Еву-03. Превратил её в своего носителя. Синдзи пришлось уничтожить Еву-03 вместе с её пилотом внутри.",
+      fact: "Бардииль — девятый Ангел. Это самый трагичный эпизод сериала: внутри Евы-03 находился Тодзи, друг Синдзи. Гэндо приказал использовать Дамми-плаг, превратив Синдзи в орудие убийства.",
+      options: ["Бардииль", "Зеруил", "Армисаил", "Лелиил"]
+    },
+    {
+      name: "Каору Нагиса",
+      emoji: "🧑",
+      hint: "Ангел в человеческом облике, пилотировавший Еву-02. Символ любви и жертвы. Синдзи был вынужден убить его.",
+      fact: "Каору — семнадцатый Ангел, последний. Он понял, что человечество достойно жить, и попросил Синдзи убить его. Считается самым сильным и самым трагичным Ангелом.",
+      options: ["Каору Нагиса", "Адам", "Лилит", "Лелиил"]
+    }
+  ];
+
+  const angelHint = document.getElementById('angelHint');
+  const angelAnswers = document.getElementById('angelAnswers');
+  const angelFact = document.getElementById('angelFact');
+  const angelNum = document.getElementById('angelNum');
+  const angelScore = document.getElementById('angelScore');
+  const angelProgress = document.getElementById('angelProgress');
+  const angelRestart = document.getElementById('angelRestart');
+
+  let angelIndex = 0, angelCorrect = 0, angelAnswered = false;
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function loadAngel() {
+    if (angelIndex >= angels.length) { showAngelResult(); return; }
+    const a = angels[angelIndex];
+    angelAnswered = false;
+    angelHint.textContent = a.hint;
+    angelNum.textContent = `${angelIndex + 1} / ${angels.length}`;
+    angelProgress.style.width = `${(angelIndex / angels.length) * 100}%`;
+    angelFact.classList.remove('show');
+    angelFact.textContent = '';
+    angelAnswers.innerHTML = '';
+
+    shuffle(a.options).forEach(opt => {
+      const b = document.createElement('button');
+      b.className = 'answer-btn';
+      b.textContent = opt;
+      b.onclick = () => {
+        if (angelAnswered) return;
+        angelAnswered = true;
+        angelAnswers.querySelectorAll('.answer-btn').forEach(x => x.disabled = true);
+        if (opt === a.name) {
+          b.classList.add('correct');
+          angelCorrect++;
+          angelScore.textContent = angelCorrect;
+        } else {
+          b.classList.add('wrong');
+          angelAnswers.querySelectorAll('.answer-btn').forEach(x => {
+            if (x.textContent === a.name) x.classList.add('correct');
+          });
+        }
+        angelFact.innerHTML = `<strong>${a.emoji} ${a.name}:</strong> ${a.fact}`;
+        angelFact.classList.add('show');
+        angelIndex++;
+        setTimeout(loadAngel, 2200);
+      };
+      angelAnswers.appendChild(b);
+    });
+  }
+
+  function showAngelResult() {
+    angelProgress.style.width = '100%';
+    angelHint.innerHTML = `🎉 Игра завершена! Твой результат: <strong>${angelCorrect} / ${angels.length}</strong>`;
+    angelAnswers.innerHTML = '';
+    angelFact.classList.remove('show');
+    angelRestart.style.display = 'inline-block';
+
+    let comment = '';
+    if (angelCorrect === angels.length) comment = '🏆 Идеально! Ты настоящий эксперт NERV!';
+    else if (angelCorrect >= 6) comment = '⭐ Отлично! Ты хорошо знаешь Ангелов.';
+    else if (angelCorrect >= 4) comment = '👍 Неплохо! Но есть куда расти.';
+    else comment = '📖 Стоит пересмотреть сериал ещё раз!';
+
+    angelHint.innerHTML += `<br><span style="font-size:0.95rem; opacity:0.9;">${comment}</span>`;
+  }
+
+  angelRestart.onclick = () => {
+    angelIndex = 0; angelCorrect = 0;
+    angelScore.textContent = 0;
+    angelProgress.style.width = '0%';
+    angelRestart.style.display = 'none';
+    loadAngel();
+  };
+
+  loadAngel();
+</script>
+
+</body>
+</html>
