@@ -188,7 +188,7 @@
     background: var(--accent2); border-radius: 3px;
   }
 
-  /* ===== WATERMELON BANNER В СЕКЦИИ ЕВЫ ===== */
+  /* ===== WATERMELON BANNER ===== */
   .watermelon-banner {
     position: relative;
     border-radius: 20px;
@@ -455,6 +455,87 @@
     transform: translateY(-8px); border-color: var(--accent2);
     box-shadow: 0 20px 40px var(--shadow);
   }
+
+  /* Карточки с фото */
+  .char-card.has-photo {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .char-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  }
+
+  .char-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: contrast(1.05);
+  }
+
+  .char-card.has-photo:hover .char-image img {
+    transform: scale(1.08);
+    filter: contrast(1.15) brightness(1.05);
+  }
+
+  .char-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, var(--card) 100%);
+    pointer-events: none;
+  }
+
+  .char-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  }
+
+  .char-info {
+    padding: 0 22px 25px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .char-info h3 {
+    color: var(--accent2);
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+
+  .char-name-jp {
+    font-size: 0.78rem;
+    opacity: 0.55;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .char-info p {
+    font-size: 0.92rem;
+    opacity: 0.85;
+    line-height: 1.55;
+  }
+
+  /* Старые карточки без фото (Киил) */
   .char-avatar {
     width: 70px; height: 70px; border-radius: 50%;
     background: linear-gradient(135deg, var(--accent2), var(--accent));
@@ -1006,42 +1087,80 @@
 <section id="characters">
   <h2>🌐 Ключевые персонажи NERV</h2>
   <div class="char-grid">
-    <div class="char-card reveal">
-      <div class="char-avatar">👨‍💼</div>
-      <h3>Гэндо Икари</h3>
-      <div class="char-role">Командующий NERV</div>
-      <p>Отец Синдзи. Холодный, расчётливый, одержимый идеей воссоединения с Юи. Автор Проекта совершенствования.</p>
+
+    <!-- ГЭНДО -->
+    <div class="char-card has-photo reveal">
+      <div class="char-image">
+        <span class="char-badge">Командующий NERV</span>
+        <img src="images/gendo.png" alt="Гэндо Икари">
+      </div>
+      <div class="char-info">
+        <h3>Гэндо Икари</h3>
+        <div class="char-name-jp">Ikari Gendo · 碇 ゲンドウ</div>
+        <p>Отец Синдзи. Холодный, расчётливый, одержимый идеей воссоединения с Юи. Автор Проекта совершенствования.</p>
+      </div>
     </div>
-    <div class="char-card reveal">
-      <div class="char-avatar">👩‍✈️</div>
-      <h3>Мисато Кацураги</h3>
-      <div class="char-role">Капитан, командир пилотов</div>
-      <p>Опекун Синдзи и Аски. Весёлая снаружи, но глубоко травмированная внутри. Настоящая «мать» для пилотов.</p>
+
+    <!-- МИСАТО -->
+    <div class="char-card has-photo reveal">
+      <div class="char-image">
+        <span class="char-badge">Капитан, командир пилотов</span>
+        <img src="images/misato.png" alt="Мисато Кацураги">
+      </div>
+      <div class="char-info">
+        <h3>Мисато Кацураги</h3>
+        <div class="char-name-jp">Katsuragi Misato · 葛城ミサト</div>
+        <p>Опекун Синдзи и Аски. Весёлая снаружи, но глубоко травмированная внутри. Настоящая «мать» для пилотов.</p>
+      </div>
     </div>
-    <div class="char-card reveal">
-      <div class="char-avatar">🧔</div>
-      <h3>Козо Фуюцуки</h3>
-      <div class="char-role">Заместитель командующего</div>
-      <p>Старый друг Гэндо, хранитель тайн SEELE и NERV. Единственный, кто знает истинный план Гэндо.</p>
+
+    <!-- КОЗО -->
+    <div class="char-card has-photo reveal">
+      <div class="char-image">
+        <span class="char-badge">Заместитель командующего</span>
+        <img src="images/kozo.png" alt="Козо Фуюцуки">
+      </div>
+      <div class="char-info">
+        <h3>Козо Фуюцуки</h3>
+        <div class="char-name-jp">Fuyutsuki Kozo · 冬月コウゾウ</div>
+        <p>Старый друг Гэндо, хранитель тайн SEELE и NERV. Единственный, кто знает истинный план Гэндо.</p>
+      </div>
     </div>
-    <div class="char-card reveal">
-      <div class="char-avatar">👩‍🔬</div>
-      <h3>Рицуко Акаги</h3>
-      <div class="char-role">Главный научный сотрудник</div>
-      <p>Гений, создавшая технологию Ев и Дамми-плаг. Влюблена в Гэндо, но трагически погибает от руки Рей.</p>
+
+    <!-- РИЦУКО -->
+    <div class="char-card has-photo reveal">
+      <div class="char-image">
+        <span class="char-badge">Главный научный сотрудник</span>
+        <img src="images/ritsuko.png" alt="Рицуко Акаги">
+      </div>
+      <div class="char-info">
+        <h3>Рицуко Акаги</h3>
+        <div class="char-name-jp">Akagi Ritsuko · 赤木リツコ</div>
+        <p>Гений, создавшая технологию Ев и Дамми-плаг. Влюблена в Гэндо, но трагически погибает от руки Рей.</p>
+      </div>
     </div>
-    <div class="char-card reveal">
-      <div class="char-avatar">🕵️</div>
-      <h3>Рёдзи Кадзи</h3>
-      <div class="char-role">Двойной агент</div>
-      <p>Шпион на службе у SEELE, NERV и японского правительства. Друг Мисато. Выращивал арбузы на ферме.</p>
+
+    <!-- КАДЗИ -->
+    <div class="char-card has-photo reveal">
+      <div class="char-image">
+        <span class="char-badge">Двойной агент</span>
+        <img src="images/kaji.png" alt="Рёдзи Кадзи">
+      </div>
+      <div class="char-info">
+        <h3>Рёдзи Кадзи</h3>
+        <div class="char-name-jp">Kaji Ryoji · 加持リョウジ</div>
+        <p>Шпион на службе у SEELE, NERV и японского правительства. Друг Мисато. Выращивал арбузы на ферме.</p>
+      </div>
     </div>
+
+    <!-- КИИЛ ЛОРЕНЦ (без фото) -->
     <div class="char-card reveal">
       <div class="char-avatar">🕶️</div>
       <h3>Киил Лоренц</h3>
       <div class="char-role">Глава SEELE</div>
       <p>Лидер тайной организации SEELE, стоящей за NERV. Главный идеологический антагонист Проекта совершенствования.</p>
     </div>
+
   </div>
 </section>
 
@@ -1077,7 +1196,7 @@
       <div class="tl-content">
         <span class="ep">ЭПИЗОД 9</span>
         <h3>🍉 Арбузная ферма</h3>
-        <p>Кадзи показывает Синдзи и Аске свою ферму. Символическая сцена тишины и мира среди войны. Аска произносит знаменитое «Мне противно».</p>
+        <p>Кадзи показывает Синдзи и Аске свою ферму. Символическая сцена тишины и мира среди войны.</p>
         <div class="characters">👤 Синдзи · Аска · Кадзи</div>
       </div>
     </div>
